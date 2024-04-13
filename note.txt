@@ -1,0 +1,6 @@
+when update GPT_SoVITS
+rember make change s2_train.py
+from 
+import utils
+to
+from GPT_SoVITS import utils
