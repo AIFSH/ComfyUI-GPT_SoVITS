@@ -11,3 +11,4 @@ wordsegment
 g2p_en
 pytorch_lightning
 audiotsm
+ffmpeg-python
