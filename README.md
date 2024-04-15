@@ -21,7 +21,8 @@ git clone https://github.com/AIFSH/ComfyUI-GPT_SoVITS.git
 cd ComfyUI-GPT_SoVITS
 pip install -r requirements.txt
 ```
-weights will be downloaded from huggingface! if you in china,make sure your internet attach the huggingface
+`weights` will be downloaded from huggingface automatically! if you in china,make sure your internet attach the huggingface
+or if you still struggle with huggingface, you may try follow [hf-mirror](https://hf-mirror.com/) to config your env.
 
 ## Tutorial
 [Demo](https://www.bilibili.com/video/BV1yC411G7NJ/?share_source=copy_web&vd_source=453c36b4abef37acd389d4c01b149023)
