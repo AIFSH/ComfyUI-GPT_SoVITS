@@ -25,8 +25,8 @@ pip install -r requirements.txt
 or if you still struggle with huggingface, you may try follow [hf-mirror](https://hf-mirror.com/) to config your env.
 
 ## Tutorial
-[Demo](https://www.bilibili.com/video/BV1yC411G7NJ/?share_source=copy_web&vd_source=453c36b4abef37acd389d4c01b149023)
-
+- [Demo](https://www.bilibili.com/video/BV1yC411G7NJ/?share_source=copy_web&vd_source=453c36b4abef37acd389d4c01b149023)
+- [FULL WorkFLOW](https://www.bilibili.com/video/BV1XE421T7ja)
 ## My other nodes you may need
 - [ComfyUI-UVR5](https://github.com/AIFSH/ComfyUI-UVR5)
 - [ComfyUI-IP_LAP](https://github.com/AIFSH/ComfyUI-IP_LAP)
