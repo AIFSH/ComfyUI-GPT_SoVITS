@@ -1,5 +1,6 @@
 import site
 import os,sys
+from server import PromptServer
 
 now_dir = os.path.dirname(os.path.abspath(__file__))
 site_packages_roots = []
@@ -18,10 +19,18 @@ for site_packages_root in site_packages_roots:
                 )
             break
         except PermissionError:
-            pass
+            raise PermissionError
+
+if os.path.isfile("%s/users.pth" % (site_packages_root)):
+    print("!!!GPT_SoVITS path was added to " + "%s/users.pth" % (site_packages_root) 
+    + "\n if meet `No module` error,try `python main.py` again")
 
 from huggingface_hub import snapshot_download
-snapshot_download(repo_id="lj1995/GPT-SoVITS",local_dir=os.path.join(now_dir,"pretrained_models"))
+model_path = os.path.join(now_dir,"pretrained_models")
+if not os.path.isfile(os.path.join(model_path,"s2G488k.pth")):
+    snapshot_download(repo_id="lj1995/GPT-SoVITS",local_dir=model_path)
+else:
+    print("GPT_SoVITS use cache models,make sure your 'pretrained_models' complete")
 
 WEB_DIRECTORY = "./web"
 from .nodes import LoadSRT,LoadAudio, GPT_SOVITS_INFER, PreViewAudio,GPT_SOVITS_FT, GPT_SOVITS_TTS
@@ -49,3 +58,12 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "GPT_SOVITS_INFER": "GPT_SOVITS Inference",
     "GPT_SOVITS_TTS": "GPT_SOVITS TTS"
 }
+
+@PromptServer.instance.routes.get("/gpt_sovits/reboot")
+def restart(self):
+    try:
+        sys.stdout.close_log()
+    except Exception as e:
+        pass
+
+    return os.execv(sys.executable, [sys.executable] + sys.argv)
