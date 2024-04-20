@@ -5,7 +5,12 @@ a comfyui custom node for [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)! 
   <img alt='webpage' src="web.png?raw=true" width="600px"/>
   <figure>
 </div>
-    
+
+## Features
+- `srt` file for subtitle was supported
+- mutiple speaker was supported in finetune and inference by `srt`
+- huge comfyui custom nodes can merge in gpt_sovits
+
 ## How to use
 make sure `ffmpeg` is worked in your commandline
 for Linux

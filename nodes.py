@@ -1,5 +1,5 @@
 import os
-import re
+import shutil
 import audiotsm
 import audiotsm.io.wav
 from time import time as ttime
@@ -189,14 +189,15 @@ class GPT_SOVITS_INFER:
                 speaker_name = f"speaker_{text[0]}"
                 text = text[1:]
                 refer_text = refer_text[1:]
-                gpt_weight = sorted([f for f in os.listdir(GPT_weight_root) if speaker_name in f])[0]
+                gpt_weight = sorted([f for f in os.listdir(GPT_weight_root) if speaker_name in f], key=lambda x:x[-8:-5])[-1]
                 gpt_weight = os.path.join(GPT_weight_root, gpt_weight)
-                sovits_weight = sorted([f for f in os.listdir(SoVITS_weight_root) if speaker_name in f])[0]
+                sovits_weight = sorted([f for f in os.listdir(SoVITS_weight_root) if speaker_name in f])[-1]
                 sovits_weight = os.path.join(SoVITS_weight_root, sovits_weight)
+                print(f"gpt_weight:\t{gpt_weight}\nsovits_weight:\t{sovits_weight}")
             else:
                 gpt_weight = os.path.join(GPT_weight_root, gpt_weight)
                 sovits_weight = os.path.join(SoVITS_weight_root, sovits_weight)
-                
+        
             get_tts_wav(refer_wav,refer_text,prompt_language,
                 text,text_language,how_to_cut,top_k,top_p,temperature,
                 gpt_weight,sovits_weight,outfile)
@@ -373,6 +374,7 @@ class GPT_SOVITS_FT:
                  gpt_total_epoch,if_dpo,if_save_latest_gpt,if_save_every_gpt_weights,
                  gpt_save_every_epoch):
         logs_path = os.path.join(parent_directory,"logs")
+        shutil.rmtree(logs_path,ignore_errors=True)
         srt_path = folder_paths.get_annotated_filepath(srt)
         audio_path = folder_paths.get_annotated_filepath(audio)
         audio_seg = AudioSegment.from_file(audio_path)
@@ -402,25 +404,27 @@ class GPT_SOVITS_FT:
             if exp_name == "auto":
                 try:
                     text = sub.content[1:]
-                    exp_name = f"speaker_{int(sub.content[0])}"
+                    new_exp_name = f"speaker_{int(sub.content[0])}"
                 except:
                     text = sub.content
-                    exp_name = "speaker_0"
+                    new_exp_name = "speaker_0"
             else:
                 text = sub.content
-            work_path = os.path.join(parent_directory,"logs",exp_name)
+                new_exp_name = exp_name
+            work_path = os.path.join(parent_directory,"logs",new_exp_name)
             if work_path not in work_path_list: work_path_list.append(work_path)
             os.makedirs(work_path, exist_ok=True)
 
             inp_text = os.path.join(work_path, "annotation.list")
             inp_wav_dir = os.path.join(work_path,"wav")
             os.makedirs(inp_wav_dir, exist_ok=True)
-            vocal_path = os.path.join(inp_wav_dir, f"{exp_name}-%04d.wav" % (i+1))
+            vocal_path = os.path.join(inp_wav_dir, f"{new_exp_name}-%04d.wav" % (i+1))
             vocal_seg = audio_seg[start_time:end_time]
             vocal_seg.export(vocal_path, format="wav")
             with open(inp_text, 'a', encoding="utf-8") as w:
-                line = f'{vocal_path}|{exp_name}|{language}|{text}\n'
+                line = f'{vocal_path}|{new_exp_name}|{language}|{text}\n'
                 w.write(line)
+
         for work_path in work_path_list:
             inp_text = os.path.join(work_path, "annotation.list")
             inp_wav_dir = os.path.join(work_path,"wav")
