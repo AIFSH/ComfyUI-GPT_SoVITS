@@ -35,6 +35,7 @@ click [the link](https://www.bilibili.com/video/BV1qx4y1h7T2) to download
 
 ## Tutorial
 - [Demo](https://www.bilibili.com/video/BV1yC411G7NJ)
+- [Demo for mutiple speaker](https://www.bilibili.com/video/BV1QC41137Wq/)
 - [FULL WorkFLOW](https://www.bilibili.com/video/BV1pp421D7qa)
 ## My other nodes you may need
 - [ComfyUI-UVR5](https://github.com/AIFSH/ComfyUI-UVR5)
