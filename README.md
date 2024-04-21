@@ -29,6 +29,10 @@ pip install -r requirements.txt
 `weights` will be downloaded from huggingface automatically! if you in china,make sure your internet attach the huggingface
 or if you still struggle with huggingface, you may try follow [hf-mirror](https://hf-mirror.com/) to config your env.
 
+## Windows
+There is a portable standalone build for Windows that should work for running on Nvidia GPUs and cuda>=11.8,
+click [the link](https://www.bilibili.com/video/BV1qx4y1h7T2) to download
+
 ## Tutorial
 - [Demo](https://www.bilibili.com/video/BV1yC411G7NJ)
 - [FULL WorkFLOW](https://www.bilibili.com/video/BV1pp421D7qa)
