@@ -28,10 +28,8 @@ pip install -r requirements.txt
 ```
 `weights` will be downloaded from huggingface automatically! if you in china,make sure your internet attach the huggingface
 or if you still struggle with huggingface, you may try follow [hf-mirror](https://hf-mirror.com/) to config your env.
-或者下载权重文件解压后把`pretrained_models`整个文件夹放进ComfyUI-GPT_SoVITS目录
-「pretrain...dels.zip」，来自夸克网盘分享。
-夸克网盘无需下载在线播放视频，畅享原画5倍速，支持电视投屏。
-/~e50533NafU~:/
+
+或者下载权重文件解压后把`pretrained_models`整个文件夹放进`ComfyUI-GPT_SoVITS`目录
 链接：https://pan.quark.cn/s/6a66ab5675cb
 提取码：yL3F
 
