@@ -1,6 +1,7 @@
 import os
 import shutil
 import audiotsm
+import logging
 import audiotsm.io.wav
 from time import time as ttime
 import folder_paths
@@ -373,6 +374,7 @@ class GPT_SOVITS_FT:
                  if_save_every_sovits_weights,pretrained_s1,gpt_batch_size,
                  gpt_total_epoch,if_dpo,if_save_latest_gpt,if_save_every_gpt_weights,
                  gpt_save_every_epoch):
+        logging.disable(logging.WARNING)
         logs_path = os.path.join(parent_directory,"logs")
         shutil.rmtree(logs_path,ignore_errors=True)
         srt_path = folder_paths.get_annotated_filepath(srt)

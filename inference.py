@@ -20,13 +20,6 @@ cnhubert_base_path = os.path.join(parent_directory,'pretrained_models/chinese-hu
 
 bert_path = os.path.join(parent_directory,"pretrained_models/chinese-roberta-wwm-ext-large")
 
-tokenizer = AutoTokenizer.from_pretrained(bert_path)
-bert_model = AutoModelForMaskedLM.from_pretrained(bert_path)
-if is_half == True:
-    bert_model = bert_model.half().to(device)
-else:
-    bert_model = bert_model.to(device)
-
 cnhubert.cnhubert_base_path = cnhubert_base_path
 
 
@@ -281,6 +274,12 @@ def clean_text_inf(text, language):
     return phones, word2ph, norm_text
 
 def get_bert_feature(text, word2ph):
+    tokenizer = AutoTokenizer.from_pretrained(bert_path)
+    bert_model = AutoModelForMaskedLM.from_pretrained(bert_path)
+    if is_half == True:
+        bert_model = bert_model.half().to(device)
+    else:
+        bert_model = bert_model.to(device)
     with torch.no_grad():
         inputs = tokenizer(text, return_tensors="pt")
         for i in inputs:
@@ -293,6 +292,8 @@ def get_bert_feature(text, word2ph):
         repeat_feature = res[i].repeat(word2ph[i], 1)
         phone_level_feature.append(repeat_feature)
     phone_level_feature = torch.cat(phone_level_feature, dim=0)
+    del bert_model
+    import gc; gc.collect(); torch.cuda.empty_cache(); 
     return phone_level_feature.T
 
 dtype=torch.float16 if is_half == True else torch.float32

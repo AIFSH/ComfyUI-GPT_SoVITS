@@ -1,5 +1,6 @@
 import site
 import os,sys
+import logging
 from server import PromptServer
 
 now_dir = os.path.dirname(os.path.abspath(__file__))
