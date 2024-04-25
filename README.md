@@ -29,7 +29,7 @@ pip install -r requirements.txt
 `weights` will be downloaded from huggingface automatically! if you in china,make sure your internet attach the huggingface
 or if you still struggle with huggingface, you may try follow [hf-mirror](https://hf-mirror.com/) to config your env.
 
-或者下载[权重文件](https://pan.quark.cn/s/a062a7f3e20b)解压后把`pretrained_models`整个文件夹放进`ComfyUI-GPT_SoVITS`目录
+或者下载[权重文件](https://pan.quark.cn/s/e5057be01087)解压后把`pretrained_models`整个文件夹放进`ComfyUI-GPT_SoVITS`目录
 
 ## Windows
 There is a portable standalone build for Windows that should work for running on Nvidia GPUs and cuda>=11.8,
