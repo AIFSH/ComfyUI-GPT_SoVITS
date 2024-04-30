@@ -3,6 +3,7 @@ from torch.nn.functional import (
     _mha_shape_check,
     _canonical_mask,
     _none_or_dtype,
+    _in_projection,
     _in_projection_packed,
 )
 from torch.nn import functional as F
