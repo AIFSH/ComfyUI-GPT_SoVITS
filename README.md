@@ -34,7 +34,12 @@ or if you still struggle with huggingface, you may try follow [hf-mirror](https:
 ## Windows
 There is a portable standalone build for Windows that should work for running on Nvidia GPUs and cuda>=11.8,
 click [the link](https://www.bilibili.com/video/BV1qx4y1h7T2) to download
-
+<div>
+  <figure>
+  <img alt='Wechat' src="1key.jpg?raw=true" width="300px"/>
+  <figure>
+</div>
+    
 ## Tutorial
 - [Demo](https://www.bilibili.com/video/BV1yC411G7NJ)
 - [Demo for mutiple speaker](https://www.bilibili.com/video/BV1QC41137Wq/)
