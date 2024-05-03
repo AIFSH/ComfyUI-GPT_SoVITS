@@ -29,10 +29,9 @@ from GPT_SoVITS.text.cleaner import clean_text
 
 from GPT_SoVITS.module.models import SynthesizerTrn
 from GPT_SoVITS.AR.models.t2s_lightning_module import Text2SemanticLightningModule
+import GPT_SoVITS.utils as utils
 
 i18n = I18nAuto()
-
-
 
 dict_language = {
     i18n("中文"): "all_zh",#全部按中文识别
@@ -74,7 +73,13 @@ class DictToAttrRecursive(dict):
 
 def change_sovits_weights(sovits_path):
     global vq_model, hps
+    # Patch GPT_SoVITS.utils.HParams to be pickable
+    # because it conflicts with utils.py in ComfyUI
+    comfyui_utils = sys.modules['utils']
+    sys.modules['utils'] = utils
     dict_s2 = torch.load(sovits_path, map_location="cpu")
+    # Restore patch for utils
+    sys.modules['utils'] = comfyui_utils
     hps = dict_s2["config"]
     hps = DictToAttrRecursive(hps)
     hps.model.semantic_frame_rate = "25hz"
