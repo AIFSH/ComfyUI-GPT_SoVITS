@@ -72,6 +72,9 @@ class GPT_SOVITS_TTS:
                          "step": 0.05,
                          "display": "slider"
                      }),
+                     "use_srt":("BOOLEAN",{
+                         "default": False
+                     })
                     }
                 }
     CATEGORY = "AIFSH_GPT_SOVITS"
@@ -82,14 +85,18 @@ class GPT_SOVITS_TTS:
 
     def get_tts_wav(self,renfer_audio,refer_srt,refer_language,
             text,text_language,gpt_weight,sovits_weight,
-            how_to_cut,top_k,top_p,temperature):
+            how_to_cut,top_k,top_p,temperature,use_srt):
         
-        with open(refer_srt, 'r', encoding="utf-8") as file:
-            file_content = file.read()
         prompt_language = dict_language[refer_language]
-        dot_ = "。" if 'zh' in prompt_language else '.'
-        prompt_text = f'{dot_}'.join([sub.content for sub in list(SrtPare(file_content))])
-        print(f"prompt_text:{prompt_text}")
+        
+        prompt_text = None
+        if use_srt:
+            with open(refer_srt, 'r', encoding="utf-8") as file:
+                file_content = file.read()
+            dot_ = "。" if 'zh' in prompt_language else '.'
+            prompt_text = f'{dot_}'.join([sub.content for sub in list(SrtPare(file_content))])
+            print(f"prompt_text:{prompt_text}")
+        
         outfile = os.path.join(out_path, f"{ttime()}_gpt_sovits_tts.wav")
         gpt_weight = os.path.join(GPT_weight_root, gpt_weight)
         sovits_weight = os.path.join(SoVITS_weight_root, sovits_weight)
