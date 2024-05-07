@@ -13,17 +13,17 @@ if(site_packages_roots==[]):site_packages_roots=["%s/runtime/Lib/site-packages" 
 for site_packages_root in site_packages_roots:
     if os.path.exists(site_packages_root):
         try:
-            with open("%s/users.pth" % (site_packages_root), "w") as f:
+            with open("%s/GPT_SoVITS.pth" % (site_packages_root), "w") as f:
                 f.write(
-                    "%s\n%s/GPT_SoVITS\n"
-                    % (now_dir,now_dir)
+                    "%s\n%s/GPT_SoVITS\n%s/GPT_SoVITS/text\n"
+                    % (now_dir,now_dir,now_dir)
                 )
             break
         except PermissionError:
             raise PermissionError
 
-if os.path.isfile("%s/users.pth" % (site_packages_root)):
-    print("!!!GPT_SoVITS path was added to " + "%s/users.pth" % (site_packages_root) 
+if os.path.isfile("%s/GPT_SoVITS.pth" % (site_packages_root)):
+    print("!!!GPT_SoVITS path was added to " + "%s/GPT_SoVITS.pth" % (site_packages_root) 
     + "\n if meet `No module` error,try `python main.py` again")
 
 from huggingface_hub import snapshot_download

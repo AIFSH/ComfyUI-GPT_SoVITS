@@ -4,6 +4,7 @@ import librosa
 import cuda_malloc
 import numpy as np
 import LangSegment
+import GPT_SoVITS.utils as utils
 from time import time as ttime
 from GPT_SoVITS.my_utils import load_audio
 from tools.i18n.i18n import I18nAuto
