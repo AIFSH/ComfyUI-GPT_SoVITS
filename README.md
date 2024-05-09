@@ -6,6 +6,10 @@ a comfyui custom node for [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)! 
   <figure>
 </div>
 
+# Disclaimer  / 免责声明
+We do not hold any responsibility for any illegal usage of the codebase. Please refer to your local laws about DMCA and other related laws.
+我们不对代码库的任何非法使用承担任何责任. 请参阅您当地关于 DMCA (数字千年法案) 和其他相关法律法规.
+
 ## Features
 - `srt` file for subtitle was supported
 - mutiple speaker was supported in finetune and inference by `srt`
