@@ -75,7 +75,13 @@ class DictToAttrRecursive(dict):
 
 def change_sovits_weights(sovits_path):
     global vq_model, hps
+    # Patch GPT_SoVITS.utils.HParams to be pickable
+    # because it conflicts with utils.py in ComfyUI
+    comfyui_utils = sys.modules['utils']
+    sys.modules['utils'] = utils
     dict_s2 = torch.load(sovits_path, map_location="cpu")
+    # Restore patch for utils
+    sys.modules['utils'] = comfyui_utils
     hps = dict_s2["config"]
     hps = DictToAttrRecursive(hps)
     hps.model.semantic_frame_rate = "25hz"
