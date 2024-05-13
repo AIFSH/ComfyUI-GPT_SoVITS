@@ -1,4 +1,5 @@
 import os
+import torch
 import shutil
 import audiotsm
 import logging
@@ -432,14 +433,17 @@ class GPT_SOVITS_FT:
             inp_wav_dir = os.path.join(work_path,"wav")
             exp_name = os.path.basename(work_path)
             open1abc(inp_text,inp_wav_dir,exp_name,pretrained_s2G,work_path)
+            import gc;gc.collect();torch.cuda.empty_cache()
             open1Ba(batch_size=sovits_batch_size,total_epoch=sovits_total_epoch,
                     exp_name=exp_name,text_low_lr_rate=text_low_lr_rate,
                     if_save_latest=if_save_latest_sovits,if_save_every_weights=if_save_every_sovits_weights,
                     save_every_epoch=sovits_save_every_epoch,pretrained_s2G=pretrained_s2G,
                     pretrained_s2D=pretrained_s2D,work_path=work_path)
+            import gc;gc.collect();torch.cuda.empty_cache()
             open1Bb(batch_size=gpt_batch_size,total_epoch=gpt_total_epoch,exp_name=exp_name,
                     if_dpo=if_dpo,if_save_latest=if_save_latest_gpt,if_save_every_weights=if_save_every_gpt_weights,
                     save_every_epoch=gpt_save_every_epoch,pretrained_s1=pretrained_s1,work_path=work_path)
+            import gc;gc.collect();torch.cuda.empty_cache()
         return {"ui":{"finetune":[SoVITS_weight_root,GPT_weight_root]}}
 
 
