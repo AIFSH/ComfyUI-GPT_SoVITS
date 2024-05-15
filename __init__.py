@@ -24,7 +24,7 @@ for site_packages_root in site_packages_roots:
 
 if os.path.isfile("%s/GPT_SoVITS.pth" % (site_packages_root)):
     print("!!!GPT_SoVITS path was added to " + "%s/GPT_SoVITS.pth" % (site_packages_root) 
-    + "\n if meet `No module` error,try `python main.py` again")
+    + "\n if meet `No module` error,try `python main.py` again, don't be foolish to pip install tools")
 
 from huggingface_hub import snapshot_download
 model_path = os.path.join(now_dir,"pretrained_models")
