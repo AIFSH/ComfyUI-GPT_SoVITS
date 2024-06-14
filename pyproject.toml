@@ -1,0 +1,15 @@
+[project]
+name = "comfyui-gpt_sovits"
+description = "a comfyui custom node for [a/GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)! you can voice cloning and tts in comfyui now\n[w/NOTE:make sure ffmpeg is worked in your commandline]"
+version = "1.0.0"
+license = "LICENSE"
+dependencies = ["pydub", "srt", "librosa", "LangSegment", "transformers", "cn2an", "pypinyin", "jieba_fast", "pyopenjtalk", "wordsegment", "g2p_en", "pytorch_lightning", "audiotsm", "ffmpeg-python"]
+
+[project.urls]
+Repository = "https://github.com/AIFSH/ComfyUI-GPT_SoVITS"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI-GPT_SoVITS"
+Icon = ""
